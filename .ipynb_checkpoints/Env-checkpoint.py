@@ -8,7 +8,17 @@ import random
 import math
 
 class Pickup_Bot_Env():
-    def __init__(self,robot,GUI=False):
+    def __init__(self,robot, pos = [] ,GUI=False,ball=False):
+        """
+        Initialize the pickup bot environment.
+
+        Parameters:
+        - robot: str, the URDF file path of the robot model.
+        - GUI: bool, flag to indicate whether to enable GUI mode.
+
+        Returns:
+        None
+        """
         #init the bot and the environment
         if GUI:
             physicsClient = p.connect(p.GUI)
@@ -23,23 +33,42 @@ class Pickup_Bot_Env():
         startOrientation1 = p.getQuaternionFromEuler([0,0,0])
         # startOrientation1 = [0, 0, 1, 0]S
         # print(1)
-        # offset = 0.275
-        # ball = p.loadURDF("soccerball.urdf",[offset,0,0], globalScaling=1*0.1)
+        if ball:
+            offset = 0.275
+            self.ball = p.loadURDF("soccerball.urdf",[0,offset,0], globalScaling=1*0.1)
                 
         self.robot = p.loadURDF(robot,startPos1, startOrientation1,useFixedBase=1)
 
-        
         self.stand_init = p.getEulerFromQuaternion(p.getLinkState(self.robot , 0)[1])[2]
         self.slider_init = p.getLinkState(self.robot , 1)[0][2 ]
         self.gripper_init = p.getEulerFromQuaternion(p.getLinkState(self.robot , 2)[1])[1]
+        
+        
         #setting the initial values of the 
-        p.setJointMotorControlArray(self.robot, [2,3],p.POSITION_CONTROL, targetPositions= [0-0.62359877559829881566,0-0.62359877559829881566])
+      
+
+        if pos != False:
+      
+        
+            p.setJointMotorControlArray(self.robot, [0,1,2,3],p.POSITION_CONTROL, targetPositions= [self.stand_init - pos[0] ,  -(pos[1] - self.slider_init)  ,  pos[2] - self.gripper_init , 
+                                                                                                  pos[3] - self.gripper_init ])#0-0.62359877559829881566,0-0.62359877559829881566])
+
+        else:
+            p.setJointMotorControlArray(self.robot, [2,3],p.POSITION_CONTROL, targetPositions= [0-0.62359877559829881566,0-0.62359877559829881566])
         for i in range(150):
             p.stepSimulation()
 
-        self.rounded_position = (0 , 0.32 , -0.84 , -0.84)
+        self.stand_init = p.getEulerFromQuaternion(p.getLinkState(self.robot , 0)[1])[2]
+        self.slider_init = p.getLinkState(self.robot , 1)[0][2 ]
+        self.gripper_init = p.getEulerFromQuaternion(p.getLinkState(self.robot , 2)[1])[1]
+       
+        
 
-        self.terminal_state = (3.14, 0.11 ,0.04,0.04)
+        self.rounded_position = self.get_current_state()
+       
+
+        self.terminal_state =(3.14, 0.11 ,0.04,0.04)
+
 
         
     def choose_action(self , Q_state , epsilon):
