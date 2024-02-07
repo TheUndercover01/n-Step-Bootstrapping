@@ -1,5 +1,9 @@
 # n-Step-Bootstrapping
 
+## Results
+
+https://github.com/TheUndercover01/TabularRL-Main/assets/141422918/05a18cc4-e1c0-46b3-8900-96df2a6a3e33
+
 Work in progress.
 
 This repository is a submodule of another repository [TabularRL-Main](https://github.com/TheUndercover01/TabularRL-Main/tree/main), where the dynamics of the bot and environment, as well as the PyBullet simulation used, are explained in detail. 
