@@ -18,7 +18,7 @@ This repository is a submodule of another repository [TabularRL-Main](https://gi
 
 ## Overveiw
 
-This repository contains implementations of 4 major algorithms based on the n-step bootstrapping methods method, drawing inspiration from the book "Reinforcement Learning: An Introduction" by Sutton and Barto. The algorithms implemented include n-step SARSA ,n-step Off policy Learning , n-step Tree Backup Algorithm and n-step Q(\sigma). Detailed explanations of these algorithms can be found in the accompanying Jupyter notebook file.
+This repository contains implementations of 4 major algorithms based on the n-step bootstrapping methods method, drawing inspiration from the book "Reinforcement Learning: An Introduction" by Sutton and Barto. The algorithms implemented include n-step SARSA ,n-step Off policy Learning , n-step Tree Backup Algorithm and n-step Q( $\sigma$ ). Detailed explanations of these algorithms can be found in the accompanying Jupyter notebook file.
 
 The repository comprises two main files: env.py and bot/robot.URDF. Within env.py, you'll find all the necessary methods required to run the environment and guide the bot through the essential steps during the simulation. On the other hand, bot/robot.URDF contains comprehensive information about the bot, encompassing its joints and links.
 
@@ -80,7 +80,7 @@ env.reset_env()
 print("Reached")
 
 ```
-This code can be used with any of the provided notebooks. You can adjust the starting state to any possible states mentioned in the notebook. The script simulates the bot in PyBullet and displays the bot's actions in real-time. Note that in the env.ipynb, the env.step method includes a time.sleep(1/24) line within the for loop to slow down the simulation for better visualization. You can choose to remove that line if you want to train the bot without the visualization delay.
+This code can be used with any of the provided notebooks. You can adjust the starting state to any possible states mentioned in the notebook. The script simulates the bot in PyBullet and displays the bot's actions in real-time. Note that in the env.ipynb, the env.step method includes a time.sleep(1/240) line within the for loop to slow down the simulation for better visualization. You can choose to remove that line if you want to train the bot without the visualization delay.
 
 One small thing is that the add 0.01 to while chooseing the starting state for the stand (i.e. position[1]).
 
