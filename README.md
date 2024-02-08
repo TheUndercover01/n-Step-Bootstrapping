@@ -2,11 +2,18 @@
 
 ## Results
 
+
+Start State            |  Terminal State
+:-------------------------:|:-------------------------:
+<img src="https://github.com/TheUndercover01/TabularRL-Main/assets/141422918/c6074b62-28f2-4f4a-9b65-2855ff9f479d" width="400" height="400">   |  <img src="https://github.com/TheUndercover01/TabularRL-Main/assets/141422918/e541cd49-2a01-498e-970a-d8e1321e6429" width="400" height="400">
+
+
 https://github.com/TheUndercover01/TabularRL-Main/assets/141422918/05a18cc4-e1c0-46b3-8900-96df2a6a3e33
 
 Work in progress.
 
 This repository is a submodule of another repository [TabularRL-Main](https://github.com/TheUndercover01/TabularRL-Main/tree/main), where the dynamics of the bot and environment, as well as the PyBullet simulation used, are explained in detail. 
+
 
 
 ## Overveiw
